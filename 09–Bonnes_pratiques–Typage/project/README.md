@@ -49,3 +49,7 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 Source : 
 
 https://cynoteck.com/fr/blog-post/interfaces-in-typescript/
+https://developer.mozilla.org/fr/
+https://stackoverflow.com/
+https://react.dev/
+https://www.typescriptlang.org/docs/handbook/intro.html
