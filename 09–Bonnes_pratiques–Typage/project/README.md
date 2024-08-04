@@ -2,6 +2,21 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+
+
+## Installation
+
+1. **Clone the repository:**
+
+   ```bash
+   git clone https://github.com/CorentinKSTR/m1-rattrapages-KISTLER-Corentin.git
+
+1. **Install the dependencies::**
+
+   ```bash
+   npm install
+
+
 ## Available Scripts
 
 In the project directory, you can run:
@@ -46,10 +61,14 @@ You can learn more in the [Create React App documentation](https://facebook.gith
 To learn React, check out the [React documentation](https://reactjs.org/).
 
 
-Source : 
+## Source : 
 
 https://cynoteck.com/fr/blog-post/interfaces-in-typescript/
 https://developer.mozilla.org/fr/
 https://stackoverflow.com/
 https://react.dev/
 https://www.typescriptlang.org/docs/handbook/intro.html
+
+## Lien Vidéo : 
+
+https://youtu.be/_vJUC4iO4U4
