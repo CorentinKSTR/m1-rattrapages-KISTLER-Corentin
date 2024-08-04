@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Product } from './types/Product';
 import { addProduct, getProducts, removeProduct, updateProductQuantity } from './function/productFunction';
 import { validateProduct } from './utils/validation';
+import './App.css';
 
 const App: React.FC = () => {
   const [products, setProducts] = useState<Product[]>(getProducts());
@@ -10,8 +11,6 @@ const App: React.FC = () => {
 
   const handleAddProduct = () => { 
     if (!newProduct) return;
-
-    // console.log("Adding product", newProduct);
 
     const product: Product = {
       id: new Date().toISOString(),
@@ -39,7 +38,6 @@ const App: React.FC = () => {
   };
 
   const handleRemoveProduct = (productId: string) => {
-    // console.log("Removing product", productId);
     removeProduct(productId);
     setProducts([...getProducts()]);
   };
@@ -49,7 +47,6 @@ const App: React.FC = () => {
     if (product) {
       const newQuantity = product.quantity + increment;
       if (newQuantity >= 0) { 
-        // console.log("Updating quantity");
         updateProductQuantity(productId, newQuantity);
         setProducts([...getProducts()]); 
       }
@@ -60,7 +57,7 @@ const App: React.FC = () => {
     <div>
       <h1>Product Picard</h1>
 
-      <div>
+      <div className='container'>
 
         <label htmlFor="Name">Name</label>
         <input
@@ -112,6 +109,7 @@ const App: React.FC = () => {
           onChange={(e) => setNewProduct({ ...newProduct, available: e.target.checked })}
         />
 
+        <label htmlFor="Image">Image</label>
         <input
           type="text"
           placeholder="Image"
@@ -147,15 +145,19 @@ const App: React.FC = () => {
         </div>
       )}
       <div>
-        <h2>Product List</h2>
-        <ul>
+      <h2>Product List</h2>
+        <ul className="product-list">
           {products.map((product) => (
-            <li key={product.id}>
-              <img src={product.image} alt={product.name} max-width="100" max-height="100" />
-              {product.name} - {product.description} - {product.price}€ - {product.quantity} in stock - {product.rating}/5
-              <button onClick={() => handleRemoveProduct(product.id)}>Remove</button>
-              <button onClick={() => handleUpdateProductQuantity(product.id, 1)}>+</button>
-              <button onClick={() => handleUpdateProductQuantity(product.id, -1)}>-</button>
+            <li key={product.id} className={product.available.toString()}>
+              <img src={product.image} alt={product.name} width="100" height="100" />
+              <div>
+                <strong>{product.name}</strong> - {product.description} - {product.price}€ - {product.quantity} in stock - {product.rating}/5 - ( Added on : {product.addedDate.toISOString().split('T')[0]} - Expire on : {product.expiryDate.toISOString().split('T')[0]})
+              </div>
+              <div className="product-actions">
+                <button onClick={() => handleRemoveProduct(product.id)}>Remove</button>
+                <button onClick={() => handleUpdateProductQuantity(product.id, 1)}>+</button>
+                <button onClick={() => handleUpdateProductQuantity(product.id, -1)}>-</button>
+              </div>
             </li>
           ))}
         </ul>
