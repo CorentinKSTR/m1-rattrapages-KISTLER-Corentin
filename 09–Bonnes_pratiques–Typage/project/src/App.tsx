@@ -96,7 +96,10 @@ const App: React.FC = () => {
 
         <label htmlFor="Rating">Rating</label>
         <input
-          type="number"
+          type="range"
+          min="0"
+          max="5"
+          step="1"
           placeholder="Rating" 
           value={newProduct.rating || 0}
           onChange={(e) => setNewProduct({ ...newProduct, rating: parseFloat(e.target.value) })}
@@ -146,9 +149,10 @@ const App: React.FC = () => {
       <div>
         <h2>Product List</h2>
         <ul>
-          {products.map((product) => ( 
+          {products.map((product) => (
             <li key={product.id}>
-              {product.id} - {product.name} - {product.description} - {product.price}€ - {product.quantity} in stock
+              <img src={product.image} alt={product.name} max-width="100" max-height="100" />
+              {product.name} - {product.description} - {product.price}€ - {product.quantity} in stock - {product.rating}/5
               <button onClick={() => handleRemoveProduct(product.id)}>Remove</button>
               <button onClick={() => handleUpdateProductQuantity(product.id, 1)}>+</button>
               <button onClick={() => handleUpdateProductQuantity(product.id, -1)}>-</button>
